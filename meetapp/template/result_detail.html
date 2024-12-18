@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Detail</title>
+</head>
+<body>
+    <!-- 페이지 제목 -->
+    <h1>중간 지점 및 근처 인기 장소</h1>
+
+    <!-- 중간 지점 출력 -->
+    <h2>중간 지점: {{ place_name }}</h2>
+
+    <!-- 근처 인기 식당 출력 -->
+    <h3>근처 인기 식당</h3>
+    {% if nearby_restaurants %}
+        <ul>
+            {% for restaurant in nearby_restaurants %}
+                <li>
+                    <strong>{{ restaurant.name }}</strong><br>
+                    주소: {{ restaurant.address }}<br>
+                    거리: {{ restaurant.distance }}m
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>근처에 인기 식당이 없습니다.</p>
+    {% endif %}
+    
+    <h3>근처 인기 카페</h3>
+    {% if nearby_cafe %}
+        <ul>
+            {% for cafe in nearby_cafe %}
+                <li>
+                    <strong>{{ cafe.name }}</strong><br>
+                    주소: {{ cafe.address }}<br>
+                    거리: {{ cafe.distance }}m
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>근처에 인기 카페가 없습니다.</p>
+    {% endif %}
+    
+
+</body>
+</html>

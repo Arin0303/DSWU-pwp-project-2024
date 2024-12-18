@@ -1,3 +1,5 @@
 from django.contrib import admin
+from meetapp.models import User, SearchedMidpoint
 
-# Register your models here.
+admin.site.register(User) 
+admin.site.register(SearchedMidpoint)

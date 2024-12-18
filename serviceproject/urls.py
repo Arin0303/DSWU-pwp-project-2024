@@ -17,7 +17,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from meetapp import views  # meetapp 앱의 views.py를 가져옴
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("detail/", views.detail, name='detail'),
 ]
