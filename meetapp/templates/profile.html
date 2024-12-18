@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 - 중간 장소 기록</title>
+    <style>
+        @charset "UTF-8";
+        @font-face {
+            font-family: 'BMJUA';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'BMJUA', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #90ee90;
+            color: white;
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <h2>중간 장소 기록</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>중간 장소</th>
+                    <th>조회 시간</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>서울특별시 종로구 광화문</td>
+                    <td>2024-06-17 15:30</td>
+                </tr>
+                <tr>
+                    <td>부산광역시 해운대구</td>
+                    <td>2024-06-18 10:00</td>
+                </tr>
+                <tr>
+                    <td>대전광역시 유성구</td>
+                    <td>2024-06-19 12:45</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

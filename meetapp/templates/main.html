@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>출발지 입력</title>
+  <script type="text/javascript" 
+    src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_API_KEY&libraries=services"></script>
+    <style>
+      @charset "UTF-8";
+      @font-face {
+        font-family: 'BMJUA';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+  
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: 'BMJUA', sans-serif;
+      }
+  
+      #background {
+        position: absolute;
+        background-color: #f0f8ff; /* 연한 파란색 */
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+  
+      header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #90ee90; /* 연한 초록색 적용 */
+    padding: 15px 20px;
+    border-bottom: 2px solid black;
+    height: 80px;
+    box-sizing: border-box;
+  }
+      
+  
+      header .logo div {
+        font-size: 24px;
+        font-weight: bold;
+      }
+  
+      header nav a {
+        text-decoration: none;
+        color: black;
+        font-size: 18px;
+        margin: 0 15px;
+      }
+  
+      main {
+        padding: 20px;
+        box-sizing: border-box;
+      }
+  
+      .input-group {
+        margin-bottom: 10px;
+      }
+  
+      .input-group input {
+        padding: 10px;
+        width: calc(100% - 40px);
+        margin-right: 10px;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+  
+      .button-group {
+        margin-top: 20px;
+      }
+  
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+      }
+  
+      button.add {
+        background-color: #4CAF50;
+        color: white;
+      }
+  
+      button.submit {
+        background-color: #2196F3;
+        color: white;
+      }
+  
+      footer {
+        background-color: white;
+        width: 100%;
+        height: 30px;
+        position: absolute;
+        bottom: 0;
+        border-top: 2px solid black;
+        box-sizing: border-box;
+      }
+    </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div>팀 이름</div>
+    </div>
+    <nav>
+      <a href="join.html">Join</a>
+      <a href="login.html">Login</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+  <main>
+    <h1>출발지점을 입력하세요</h1>
+    <form method="POST" action="{% url 'result' %}"></form>
+    {% csrf_token %}
+    <div id="input-container">
+      <div class="input-group">
+        <input type="text" name="addresses[]" placeholder="출발지점 입력">
+      </div>
+      <div class="input-group">
+        <input type="text" name="addresses[]" placeholder="출발지점 입력">
+      </div>
+    </div>
+    <div class="button-group">
+      <button class="add" onclick="addInput()">+ 추가</button>
+      <button class="submit">결과보기</button>
+    </div>
+    <div id="result"></div>
+  </main>
+</body>
+<script>
+   function addInput() {
+      const container = document.getElementById('input-container');
+      const newInput = document.createElement('div');
+      newInput.className = 'input-group';
+      newInput.innerHTML = '<input type="text" name="addresses[]" placeholder="출발지점 입력">';
+      container.appendChild(newInput);
+    }
+</script>
+</html>
