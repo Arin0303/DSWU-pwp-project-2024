@@ -1,48 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result Detail</title>
-</head>
-<body>
-    <!-- 페이지 제목 -->
-    <h1>중간 지점 및 근처 인기 장소</h1>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>홈페이지</title>
+        <style>
+            @charset "UTF-8";
+            @font-face {
+                font-family: "BMJUA";
+                src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff")
+                    format("woff");
+                font-weight: normal;
+                font-style: normal;
+            }
 
-    <!-- 중간 지점 출력 -->
-    <h2>중간 지점: {{ place_name }}</h2>
+            /* 전체 화면 고정 */
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                font-family: "BMJUA", sans-serif;
+            }
+            /* 전체 배경 */
+            #background {
+                position: absolute;
+                background-color: #90ee90; /* 연한 초록색 */
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+            }
 
-    <!-- 근처 인기 식당 출력 -->
-    <h3>근처 인기 식당</h3>
-    {% if nearby_restaurants %}
-        <ul>
-            {% for restaurant in nearby_restaurants %}
-                <li>
-                    <strong>{{ restaurant.name }}</strong><br>
-                    주소: {{ restaurant.address }}<br>
-                    거리: {{ restaurant.distance }}m
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>근처에 인기 식당이 없습니다.</p>
-    {% endif %}
-    
-    <h3>근처 인기 카페</h3>
-    {% if nearby_cafe %}
-        <ul>
-            {% for cafe in nearby_cafe %}
-                <li>
-                    <strong>{{ cafe.name }}</strong><br>
-                    주소: {{ cafe.address }}<br>
-                    거리: {{ cafe.distance }}m
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>근처에 인기 카페가 없습니다.</p>
-    {% endif %}
-    
+            /* 헤더 */
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #90ee90;
+                padding: 15px 20px;
+                border-bottom: 2px solid black;
+                height: 80px;
+                box-sizing: border-box;
+            }
 
-</body>
+            header .logo {
+                display: flex;
+                align-items: center;
+            }
+
+            header .logo div {
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            header nav a {
+                text-decoration: none;
+                color: black;
+                font-size: 18px;
+                margin: 0 15px;
+            }
+
+            /* 메인 콘텐츠 */
+            main {
+                overflow-y: auto; /* 세로 스크롤 활성화 */
+                height: calc(100% - 80px); /* 헤더를 제외한 높이 */
+                background-color: white;
+                margin: 0;
+                padding: 20px;
+                border-top: 2px solid black;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            /* 중간 지점 섹션 */
+            .midpoint-section {
+                text-align: center;
+                padding: 20px;
+                font-size: 20px;
+                font-weight: bold;
+                background-color: #f4f4f4;
+                border-bottom: 2px solid black;
+            }
+
+            /* 식당 섹션 */
+            .restaurants-section {
+                overflow-y: auto; /* 세로 스크롤 활성화 */
+                width: 48%;
+                background-color: #f9f9f9;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            /* 카페 섹션 */
+            .cafes-section {
+                overflow-y: auto; /* 세로 스크롤 활성화 */
+                width: 48%;
+                background-color: #f9f9f9;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            /* 푸터 */
+            footer {
+                background-color: white;
+                width: 100%;
+                height: 30px;
+                position: relative;
+                bottom: 0;
+                border-top: 2px solid black;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="background"></div>
+        <header>
+            <div class="logo">
+                <div>팀 이름</div>
+            </div>
+            <nav>
+                <a href="join.html">Join</a>
+                <a href="login.html">Login</a>
+                <a href="profile.html">Profile</a>
+            </nav>
+        </header>
+        <div class="midpoint-section">
+            중간 지점: {{ place_name }}
+        </div>
+        <main>
+            <div class="restaurants-section">
+
+                <!-- 근처 인기 식당 출력 -->
+                <h3>근처 인기 식당</h3>
+                {% if nearby_restaurants %}
+                    <ul>
+                        {% for restaurant in nearby_restaurants %}
+                            <li>
+                                <strong>{{ restaurant.name }}</strong><br />
+                                주소: {{ restaurant.address }}<br />
+                                거리: {{ restaurant.distance }}m
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>근처에 인기 식당이 없습니다.</p>
+                {% endif %}
+            </div>
+
+            <div class="cafes-section">
+                <h3>근처 인기 카페</h3>
+                {% if nearby_cafe %}
+                    <ul>
+                        {% for cafe in nearby_cafe %}
+                            <li>
+                                <strong>{{ cafe.name }}</strong><br />
+                                주소: {{ cafe.address }}<br />
+                                거리: {{ cafe.distance }}m
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>근처에 인기 카페가 없습니다.</p>
+                {% endif %}
+            </div>
+        </main>
+        <footer>
+            <!-- 푸터 콘텐츠 -->
+            <p style="text-align: center; line-height: 5px">
+                © 2024 팀이름. All rights reserved.
+            </p>
+        </footer>
+    </body>
 </html>
