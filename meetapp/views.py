@@ -3,6 +3,7 @@ from django.shortcuts import render
 import requests
 from django.shortcuts import render
 from django.http import JsonResponse
+from .models import SearchedMidpoint
 
 KAKAO_API_KEY = "60163a9f4b787569bf83789a6a5263be"  # Kakao API Key
 
@@ -36,3 +37,12 @@ def result(request):
         return render(request, 'result.html', {'results': results})
 
     return JsonResponse({'error': '잘못된 요청입니다.'})
+
+
+    # 중간 장소 기록 페이지
+def midpoint_list(request):
+    midpoints = SearchedMidpoint.objects.all().order_by('-searched_at')  # 조회 날짜 기준 내림차순 정렬
+    context = {
+        'midpoints': midpoints
+    }
+    return render(request, 'profile.html', context)

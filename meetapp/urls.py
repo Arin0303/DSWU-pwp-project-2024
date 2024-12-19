@@ -5,4 +5,6 @@ from meetapp import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('result/', views.result, name='result'),
+    path('profile/', views.midpoint_list, name='midpoint_list'),
+    
 ]

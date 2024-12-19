@@ -72,22 +72,24 @@
             <thead>
                 <tr>
                     <th>중간 장소</th>
+                    <th>위도</th>
+                    <th>경도</th>
                     <th>조회 시간</th>
                 </tr>
             </thead>
             <tbody>
+                {% for midpoint in midpoints %}
                 <tr>
-                    <td>서울특별시 종로구 광화문</td>
-                    <td>2024-06-17 15:30</td>
+                    <td>{{ midpoint.place_name|default:"알 수 없는 장소" }}</td>
+                    <td>{{ midpoint.latitude }}</td>
+                    <td>{{ midpoint.longitude }}</td>
+                    <td>{{ midpoint.searched_at|date:"Y-m-d H:i" }}</td>
                 </tr>
+                {% empty %}
                 <tr>
-                    <td>부산광역시 해운대구</td>
-                    <td>2024-06-18 10:00</td>
+                    <td colspan="4">기록이 없습니다.</td>
                 </tr>
-                <tr>
-                    <td>대전광역시 유성구</td>
-                    <td>2024-06-19 12:45</td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
